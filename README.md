@@ -1,9 +1,6 @@
-## Welcome to GitHub Pages
+## 欢迎来到T-Macs框架首页
 
-You can use the [editor on GitHub](https://github.com/Lik-2019/T-Macs/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-欢迎来到首页
+诗曰：混沌未分天地乱，茫茫渺渺无人见。自从盘古破鸿蒙，开辟从兹清浊辨。覆载群生仰至仁，发明万物皆成善。欲知造化会元功，须看《西游释厄传》。
 
 ### Markdown
 
