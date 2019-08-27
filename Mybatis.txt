@@ -1,0 +1,107 @@
+1.加载mapper.xml
+将加载的内容放在pojo中
+加载mybatis 配置，drive url p n mapper
+
+
+1.解析配置文件
+
+configration{
+dirve
+url
+usname
+pass
+Map<string,mappedStatment>
+}
+
+mappedstatment{
+namespace
+id
+resultType
+sql
+}
+
+sqlSessionFactory{
+ configration configration 
+sqlsessionfactory(){
+加载db 放入对象中；
+加载mapper 放入对象中；
+}
+}
+
+
+2.生成sqlsession对象
+接口
+sqlSession（）{
+selectOne（）
+}
+实现类
+defultSqlSession（）{
+
+confinration conf
+
+selectOne（）{}
+defultSqlsession（conf）{
+this.conf=conf;
+}
+}
+
+sqlSessionFactory{
+ configration conf
+sqlsessionfactory(){
+加载db 放入对象中；
+加载mapper 放入对象中；
+}
+
+openSession（）{
+new defaultSqlSession(conf);
+}
+
+}
+
+调用sqlsession的selectone，selectone调用selectList
+selectList底层是调用excute组件去查询；
+
+两种编程模型
+一种面向sqlsession 对外提供接口，对内调用excute组件；（可读性不太好ibatis模式）
+
+
+
+二种面向mapper接口（底层动态代理）
+编写一个mapperProxy继承invcationHandernal
+{
+invoke（）里面判断查询一个还是多个，多个就执行selectList，一个就执行selectOne;
+}
+然后再getMapper里面获得这个代理对象执行；
+
+
+excute 组件内容：
+{
+classforname（com.mysql.Drive);
+connection=DriveManager.getConnection(url,username,psw)
+cp=connection.prepareStatement(sql)
+cp.set
+resultSet = cp.excuteQuary()
+通过自己的反射包将查询到的对象通过反射封装到pojo中
+}
+
+
+mybatis运行流程：
+1.创建SqlsessionFactory对象；对象中加载配置文件，将配置文件封装到configration对象中；
+2.SqlSessionFactory对象生成SqlSession对象；
+3.SqlSession.getMapper(xxxx.class)获得代理对象;
+4.通过代理对象调用方法，传递方法参数；
+5.里面会判断查询一个还是多个，一个用SqlSession的selectOne，多个用seectList；
+6.这两个方法最终会调用excute组件的query方法连接数据库，设置查询；
+7.将查询到的数据通过反射封装到pojo类中；
+8.将pojo传递给用户；
+
+
+
+namespace +id  做map的key 为了得到sql语句
+
+final修饰configration：提高访问效率
+mybatis为什么不用连接池：
+
+
+
+
